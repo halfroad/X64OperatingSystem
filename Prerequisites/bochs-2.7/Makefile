@@ -88,7 +88,7 @@ CFLAGS = -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -pthread  $(X_CFLAGS) $(MC
 CXXFLAGS = -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -pthread  $(X_CFLAGS) $(MCH_CFLAGS) $(FLA_FLAGS) -DBX_PLUGIN_PATH="\"${plugdir}\"" -DBX_SHARE_PATH='"$(sharedir)"'
 
 LDFLAGS = 
-LIBS =  -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype
+LIBS =  -ldl
 # To compile with readline:
 #   linux needs just -lreadline
 #   solaris needs -lreadline -lcurses
@@ -176,12 +176,12 @@ all: bochs bochs_plugins bximage
 bochs: iodev/libiodev.a  iodev/hdimage/libhdimage.a iodev/usb/libusb.a   \
 		$(DEBUGGER_LIB) cpu/libcpu.a $(AVX_LIB) cpu/cpudb/libcpudb.a memory/libmemory.a \
 		gui/libgui.a  $(BX_OBJS) \
-		$(SIMX86_OBJS) $(FPU_LIB)  
+		$(SIMX86_OBJS) $(FPU_LIB)  ltdl.o
 	$(LIBTOOL) --mode=link --tag CXX $(CXX) -o $@ $(CXXFLAGS) $(LDFLAGS) -export-dynamic $(BX_OBJS) $(SIMX86_OBJS) \
 		iodev/libiodev.a  iodev/hdimage/libhdimage.a iodev/usb/libusb.a   \
 		$(DEBUGGER_LIB) cpu/libcpu.a $(AVX_LIB) cpu/cpudb/libcpudb.a \
 		 memory/libmemory.a gui/libgui.a \
-		 -lltdl \
+		 ltdl.o \
 		 $(FPU_LIB) \
 		 \
 		$(DEVICE_LINK_OPTS) \
@@ -197,12 +197,12 @@ bochs: iodev/libiodev.a  iodev/hdimage/libhdimage.a iodev/usb/libusb.a   \
 .win32_dll_plugin_target: iodev/libiodev.a  iodev/hdimage/libhdimage.a iodev/usb/libusb.a  \
 		 $(DEBUGGER_LIB) cpu/libcpu.a $(AVX_LIB) cpu/cpudb/libcpudb.a \
 		memory/libmemory.a gui/libgui.a  \
-		$(BX_OBJS) $(SIMX86_OBJS) $(FPU_LIB)  
+		$(BX_OBJS) $(SIMX86_OBJS) $(FPU_LIB)  ltdl.o
 	$(DLLTOOL) --export-all-symbols --output-def bochs.def \
 		$(BX_OBJS) $(SIMX86_OBJS) \
 		iodev/libiodev.a  iodev/hdimage/libhdimage.a iodev/usb/libusb.a   \
 		cpu/libcpu.a $(AVX_LIB) cpu/cpudb/libcpudb.a memory/libmemory.a gui/libgui.a \
-		$(DEBUGGER_LIB)   \
+		$(DEBUGGER_LIB)  ltdl.o \
 		 $(FPU_LIB)
 	$(DLLTOOL) --dllname bochs.exe --def bochs.def --output-lib dllexports.a
 	$(DLLTOOL) --dllname bochs.exe --output-exp bochs.exp --def bochs.def
@@ -210,7 +210,7 @@ bochs: iodev/libiodev.a  iodev/hdimage/libhdimage.a iodev/usb/libusb.a   \
 	    $(BX_OBJS) bochs.exp $(SIMX86_OBJS) \
 		iodev/libiodev.a  iodev/hdimage/libhdimage.a iodev/usb/libusb.a   \
 		cpu/libcpu.a $(AVX_LIB) cpu/cpudb/libcpudb.a memory/libmemory.a gui/libgui.a \
-		$(DEBUGGER_LIB)  -lltdl \
+		$(DEBUGGER_LIB)  ltdl.o \
 		 $(FPU_LIB) \
 		$(GUI_LINK_OPTS) \
 		$(DEVICE_LINK_OPTS) \

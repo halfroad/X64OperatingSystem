@@ -216,7 +216,7 @@
 #define BX_USE_ACPI_SMF     1  // ACPI
 
 #define BX_PLUGINS 1
-#define BX_HAVE_LTDL 1
+#define BX_HAVE_LTDL 0
 #define BX_HAVE_DLFCN_H 1
 
 #if BX_PLUGINS && \
@@ -614,7 +614,7 @@ typedef Bit32u bx_phy_address;
 
 #define BX_GDBSTUB 0
 #define BX_DEBUGGER 1
-#define BX_DEBUGGER_GUI 1
+#define BX_DEBUGGER_GUI 0
 
 #define BX_INSTRUMENTATION 0
 

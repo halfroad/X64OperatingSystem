@@ -433,7 +433,7 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/pi/Documents/Projects/X64/bochs-2.7'
+ac_pwd='/home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7'
 srcdir='.'
 test -n "$AWK" || AWK=awk
 # The default lists apply if the user does not specify any file.
@@ -639,8 +639,8 @@ S["GUI_DLL_TARGETS"]=""
 S["EXT_MSVC_DLL_RULES"]=""
 S["PLUGIN_TARGET_2"]="plugins_gcc"
 S["PLUGIN_TARGET"]="bochs_plugins"
-S["PLUGIN_LIB"]="-lltdl"
-S["PLUGIN_VAR"]=""
+S["PLUGIN_LIB"]="ltdl.o"
+S["PLUGIN_VAR"]="ltdl.o"
 S["IODEV_EXT_PLUGIN_OBJS"]="$(OBJS_THAT_CAN_BE_PLUGINS)"
 S["IODEV_EXT_NON_PLUGIN_OBJS"]="$(OBJS_THAT_CANNOT_BE_PLUGINS)"
 S["IODEV_PLUGIN_OBJS"]="$(OBJS_THAT_CAN_BE_PLUGINS)"
@@ -693,17 +693,14 @@ S["PTHREAD_CC"]="gcc"
 S["EXPORT_DYNAMIC"]="-export-dynamic"
 S["CI_SUPPORT_OBJS"]=""
 S["CI_PLUGIN_OBJS"]="textconfig.o"
-S["ENH_DBG_OBJS"]="enh_dbg.o gtk_enh_dbg_osdep.o"
+S["ENH_DBG_OBJS"]=""
 S["CXXFLAGS_CONSOLE"]="-g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES"
 S["BXHUB_LINK_OPTS"]=""
 S["BXHUB_FLAG"]=""
 S["BXIMAGE_LINK_OPTS"]=""
 S["BXIMAGE_FLAG"]="-DBXIMAGE"
 S["WGET"]="wget"
-S["TOOLKIT_CXXFLAGS"]="-pthread -I/usr/include/gtk-2.0 -I/usr/lib/aarch64-linux-gnu/gtk-2.0/include -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/gdk-pixb"\
-"uf-2.0 -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/pixman-1 -I/"\
-"usr/include/harfbuzz -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/inclu"\
-"de/libpng16"
+S["TOOLKIT_CXXFLAGS"]=""
 S["WX_CXXFLAGS"]=""
 S["WX_CFLAGS"]=""
 S["GUI_CXXFLAGS"]=" $(X_CFLAGS)"
@@ -816,8 +813,7 @@ S["build"]="aarch64-unknown-linux-gnu"
 S["target_alias"]=""
 S["host_alias"]=""
 S["build_alias"]=""
-S["LIBS"]=" -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 "\
-"-lharfbuzz -lfontconfig -lfreetype"
+S["LIBS"]=" -ldl"
 S["ECHO_T"]=""
 S["ECHO_N"]="-n"
 S["ECHO_C"]=""
@@ -1002,7 +998,6 @@ D["BX_USE_IDLE_HACK"]=" 1"
 D["BX_HAVE_DLFCN_H"]=" 1"
 D["HAVE_ASSERT_H"]=" 1"
 D["BX_PLUGINS"]=" 1"
-D["BX_HAVE_LTDL"]=" 1"
 D["BX_SUPPORT_A20"]=" 1"
 D["BX_SUPPORT_X86_64"]=" 1"
 D["BX_SUPPORT_SMP"]=" 1"
@@ -1063,7 +1058,7 @@ D["BX_DEFAULT_CONFIG_INTERFACE"]=" \"textconfig\""
 D["BX_DEFAULT_DISPLAY_LIBRARY"]=" \"x\""
 D["BX_USE_TEXTCONFIG"]=" 1"
 D["BX_USE_GUI_CONSOLE"]=" 1"
-D["BX_DEBUGGER_GUI"]=" 1"
+D["BX_DEBUGGER_GUI"]=" 0"
   for (key in D) D_is_set[key] = 1
   FS = ""
 }

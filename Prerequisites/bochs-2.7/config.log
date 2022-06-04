@@ -27,7 +27,6 @@ uname -v = #1538 SMP PREEMPT Thu Mar 31 19:40:39 BST 2022
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /home/pi/.local/bin
 PATH: /usr/local/sbin
 PATH: /usr/local/bin
 PATH: /usr/sbin
@@ -470,8 +469,8 @@ configure:8678: checking whether stripping libraries is possible
 configure:8683: result: yes
 configure:8781: checking for shl_load
 configure:8781: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/cctyo8Uh.o: in function `main':
-/home/pi/Documents/Projects/X64/bochs-2.7/conftest.c:54: undefined reference to `shl_load'
+/usr/bin/ld: /tmp/ccVVMdyx.o: in function `main':
+/home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/conftest.c:54: undefined reference to `shl_load'
 collect2: error: ld returned 1 exit status
 configure:8781: $? = 1
 configure: failed program was:
@@ -576,8 +575,8 @@ configure: failed program was:
 configure:8819: result: no
 configure:8824: checking for dlopen
 configure:8824: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/ccUKUD3o.o: in function `main':
-/home/pi/Documents/Projects/X64/bochs-2.7/conftest.c:54: undefined reference to `dlopen'
+/usr/bin/ld: /tmp/cc4VJz2F.o: in function `main':
+/home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/conftest.c:54: undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:8824: $? = 1
 configure: failed program was:
@@ -1845,8 +1844,8 @@ configure:20723: $? = 0
 configure:20723: result: yes
 configure:20735: checking for strrev
 configure:20735: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/cce4qwzu.o: in function `main':
-/home/pi/Documents/Projects/X64/bochs-2.7/conftest.c:110: undefined reference to `strrev'
+/usr/bin/ld: /tmp/ccFfMnDK.o: in function `main':
+/home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/conftest.c:110: undefined reference to `strrev'
 collect2: error: ld returned 1 exit status
 configure:20735: $? = 1
 configure: failed program was:
@@ -1966,8 +1965,8 @@ configure: failed program was:
 configure:20735: result: no
 configure:20747: checking for stricmp
 configure:20747: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/cchD9zNu.o: in function `main':
-/home/pi/Documents/Projects/X64/bochs-2.7/conftest.c:110: undefined reference to `stricmp'
+/usr/bin/ld: /tmp/cco9ISiQ.o: in function `main':
+/home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/conftest.c:110: undefined reference to `stricmp'
 collect2: error: ld returned 1 exit status
 configure:20747: $? = 1
 configure: failed program was:
@@ -2128,8 +2127,8 @@ configure:20877: $? = 0
 configure:20877: result: yes
 configure:20889: checking for fseek64
 configure:20889: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/bin/ld: /tmp/cczlSIQo.o: in function `main':
-/home/pi/Documents/Projects/X64/bochs-2.7/conftest.c:123: undefined reference to `fseek64'
+/usr/bin/ld: /tmp/ccYOb2xF.o: in function `main':
+/home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/conftest.c:123: undefined reference to `fseek64'
 collect2: error: ld returned 1 exit status
 configure:20889: $? = 1
 configure: failed program was:
@@ -2914,18 +2913,281 @@ configure:21630: checking for plugins support
 configure:21649: result: yes
 configure:21661: checking ltdl.h usability
 configure:21661: gcc -c -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES conftest.c >&5
-configure:21661: $? = 0
-configure:21661: result: yes
+conftest.c:145:10: fatal error: ltdl.h: No such file or directory
+  145 | #include <ltdl.h>
+      |          ^~~~~~~~
+compilation terminated.
+configure:21661: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_DIRENT_H 1
+| #define INSTALL_LTDL 1
+| #define LTDL_SHLIB_EXT ".so"
+| #define LTDL_SHLIBPATH_VAR "LD_LIBRARY_PATH"
+| #define LTDL_SYSSEARCHPATH "/lib:/usr/lib"
+| #define LTDL_OBJDIR ".libs/"
+| #define HAVE_PRELOADED_SYMBOLS 1
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_ARGZ_H 1
+| #define HAVE_ERROR_T 1
+| #define HAVE_ARGZ_APPEND 1
+| #define HAVE_ARGZ_CREATE_SEP 1
+| #define HAVE_ARGZ_INSERT 1
+| #define HAVE_ARGZ_NEXT 1
+| #define HAVE_ARGZ_STRINGIFY 1
+| #define HAVE_ASSERT_H 1
+| #define HAVE_CTYPE_H 1
+| #define HAVE_ERRNO_H 1
+| #define HAVE_MALLOC_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STDIO_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_STRCHR 1
+| #define HAVE_STRRCHR 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_STRCMP 1
+| #define HAVE_CLOSEDIR 1
+| #define HAVE_OPENDIR 1
+| #define HAVE_READDIR 1
+| #define SIZEOF_UNSIGNED_CHAR 1
+| #define SIZEOF_UNSIGNED_SHORT 2
+| #define SIZEOF_UNSIGNED_INT 4
+| #define SIZEOF_UNSIGNED_LONG 8
+| #define SIZEOF_UNSIGNED_LONG_LONG 8
+| #define SIZEOF_INT_P 8
+| #define HAVE_GETENV 1
+| #define BX_HAVE_GETENV 1
+| #define HAVE_SETENV 1
+| #define BX_HAVE_SETENV 1
+| #define HAVE_SNPRINTF 1
+| #define BX_HAVE_SNPRINTF 1
+| #define HAVE_VSNPRINTF 1
+| #define BX_HAVE_VSNPRINTF 1
+| #define HAVE_SELECT 1
+| #define BX_HAVE_SELECT 1
+| #define BX_HAVE_SOCKLEN_T 1
+| #define HAVE_STRTOULL 1
+| #define BX_HAVE_STRTOULL 1
+| #define HAVE_STRTOUQ 1
+| #define BX_HAVE_STRTOUQ 1
+| #define HAVE_STRDUP 1
+| #define BX_HAVE_STRDUP 1
+| #define HAVE_STRCASECMP 1
+| #define BX_HAVE_STRCASECMP 1
+| #define HAVE_MKSTEMP 1
+| #define BX_HAVE_MKSTEMP 1
+| #define BX_HAVE_SYS_MMAN_H 1
+| #define HAVE_GETTIMEOFDAY 1
+| #define BX_HAVE_GETTIMEOFDAY 1
+| #define HAVE_USLEEP 1
+| #define BX_HAVE_USLEEP 1
+| #define BX_HAVE___BUILTIN_BSWAP32 1
+| #define BX_HAVE___BUILTIN_BSWAP64 1
+| #define HAVE_TMPFILE64 1
+| #define BX_HAVE_TMPFILE64 1
+| #define HAVE_FSEEKO64 1
+| #define BX_HAVE_FSEEKO64 1
+| #define BX_HAVE_SSIZE_T 1
+| #define HAVE_SLEEP 1
+| #define BX_HAVE_SLEEP 1
+| #define HAVE_NANOSLEEP 1
+| #define BX_HAVE_NANOSLEEP 1
+| #define HAVE_ABORT 1
+| #define BX_HAVE_ABORT 1
+| #define HAVE_TIMELOCAL 1
+| #define BX_HAVE_TIMELOCAL 1
+| #define HAVE_GMTIME 1
+| #define BX_HAVE_GMTIME 1
+| #define HAVE_MKTIME 1
+| #define BX_HAVE_MKTIME 1
+| #define _FILE_OFFSET_BITS 64
+| #define HAVE_LARGEFILE_SUPPORT 1
+| #define BX_HAVE_SET 1
+| #define BX_HAVE_MAP 1
+| #define BX_USE_IDLE_HACK 1
+| #define BX_HAVE_DLFCN_H 1
+| #define HAVE_ASSERT_H 1
+| #define BX_PLUGINS 1
+| /* end confdefs.h.  */
+| #include <stdio.h>
+| #ifdef HAVE_SYS_TYPES_H
+| # include <sys/types.h>
+| #endif
+| #ifdef HAVE_SYS_STAT_H
+| # include <sys/stat.h>
+| #endif
+| #ifdef STDC_HEADERS
+| # include <stdlib.h>
+| # include <stddef.h>
+| #else
+| # ifdef HAVE_STDLIB_H
+| #  include <stdlib.h>
+| # endif
+| #endif
+| #ifdef HAVE_STRING_H
+| # if !defined STDC_HEADERS && defined HAVE_MEMORY_H
+| #  include <memory.h>
+| # endif
+| # include <string.h>
+| #endif
+| #ifdef HAVE_STRINGS_H
+| # include <strings.h>
+| #endif
+| #ifdef HAVE_INTTYPES_H
+| # include <inttypes.h>
+| #endif
+| #ifdef HAVE_STDINT_H
+| # include <stdint.h>
+| #endif
+| #ifdef HAVE_UNISTD_H
+| # include <unistd.h>
+| #endif
+| #include <ltdl.h>
+configure:21661: result: no
 configure:21661: checking ltdl.h presence
 configure:21661: gcc -E  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES conftest.c
-configure:21661: $? = 0
-configure:21661: result: yes
+conftest.c:112:10: fatal error: ltdl.h: No such file or directory
+  112 | #include <ltdl.h>
+      |          ^~~~~~~~
+compilation terminated.
+configure:21661: $? = 1
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| #define STDC_HEADERS 1
+| #define HAVE_SYS_TYPES_H 1
+| #define HAVE_SYS_STAT_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STRINGS_H 1
+| #define HAVE_INTTYPES_H 1
+| #define HAVE_STDINT_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_DLFCN_H 1
+| #define HAVE_DIRENT_H 1
+| #define INSTALL_LTDL 1
+| #define LTDL_SHLIB_EXT ".so"
+| #define LTDL_SHLIBPATH_VAR "LD_LIBRARY_PATH"
+| #define LTDL_SYSSEARCHPATH "/lib:/usr/lib"
+| #define LTDL_OBJDIR ".libs/"
+| #define HAVE_PRELOADED_SYMBOLS 1
+| #define HAVE_LIBDL 1
+| #define HAVE_DLERROR 1
+| #define HAVE_ARGZ_H 1
+| #define HAVE_ERROR_T 1
+| #define HAVE_ARGZ_APPEND 1
+| #define HAVE_ARGZ_CREATE_SEP 1
+| #define HAVE_ARGZ_INSERT 1
+| #define HAVE_ARGZ_NEXT 1
+| #define HAVE_ARGZ_STRINGIFY 1
+| #define HAVE_ASSERT_H 1
+| #define HAVE_CTYPE_H 1
+| #define HAVE_ERRNO_H 1
+| #define HAVE_MALLOC_H 1
+| #define HAVE_MEMORY_H 1
+| #define HAVE_STDLIB_H 1
+| #define HAVE_STDIO_H 1
+| #define HAVE_UNISTD_H 1
+| #define HAVE_STRING_H 1
+| #define HAVE_STRCHR 1
+| #define HAVE_STRRCHR 1
+| #define HAVE_MEMCPY 1
+| #define HAVE_MEMMOVE 1
+| #define HAVE_STRCMP 1
+| #define HAVE_CLOSEDIR 1
+| #define HAVE_OPENDIR 1
+| #define HAVE_READDIR 1
+| #define SIZEOF_UNSIGNED_CHAR 1
+| #define SIZEOF_UNSIGNED_SHORT 2
+| #define SIZEOF_UNSIGNED_INT 4
+| #define SIZEOF_UNSIGNED_LONG 8
+| #define SIZEOF_UNSIGNED_LONG_LONG 8
+| #define SIZEOF_INT_P 8
+| #define HAVE_GETENV 1
+| #define BX_HAVE_GETENV 1
+| #define HAVE_SETENV 1
+| #define BX_HAVE_SETENV 1
+| #define HAVE_SNPRINTF 1
+| #define BX_HAVE_SNPRINTF 1
+| #define HAVE_VSNPRINTF 1
+| #define BX_HAVE_VSNPRINTF 1
+| #define HAVE_SELECT 1
+| #define BX_HAVE_SELECT 1
+| #define BX_HAVE_SOCKLEN_T 1
+| #define HAVE_STRTOULL 1
+| #define BX_HAVE_STRTOULL 1
+| #define HAVE_STRTOUQ 1
+| #define BX_HAVE_STRTOUQ 1
+| #define HAVE_STRDUP 1
+| #define BX_HAVE_STRDUP 1
+| #define HAVE_STRCASECMP 1
+| #define BX_HAVE_STRCASECMP 1
+| #define HAVE_MKSTEMP 1
+| #define BX_HAVE_MKSTEMP 1
+| #define BX_HAVE_SYS_MMAN_H 1
+| #define HAVE_GETTIMEOFDAY 1
+| #define BX_HAVE_GETTIMEOFDAY 1
+| #define HAVE_USLEEP 1
+| #define BX_HAVE_USLEEP 1
+| #define BX_HAVE___BUILTIN_BSWAP32 1
+| #define BX_HAVE___BUILTIN_BSWAP64 1
+| #define HAVE_TMPFILE64 1
+| #define BX_HAVE_TMPFILE64 1
+| #define HAVE_FSEEKO64 1
+| #define BX_HAVE_FSEEKO64 1
+| #define BX_HAVE_SSIZE_T 1
+| #define HAVE_SLEEP 1
+| #define BX_HAVE_SLEEP 1
+| #define HAVE_NANOSLEEP 1
+| #define BX_HAVE_NANOSLEEP 1
+| #define HAVE_ABORT 1
+| #define BX_HAVE_ABORT 1
+| #define HAVE_TIMELOCAL 1
+| #define BX_HAVE_TIMELOCAL 1
+| #define HAVE_GMTIME 1
+| #define BX_HAVE_GMTIME 1
+| #define HAVE_MKTIME 1
+| #define BX_HAVE_MKTIME 1
+| #define _FILE_OFFSET_BITS 64
+| #define HAVE_LARGEFILE_SUPPORT 1
+| #define BX_HAVE_SET 1
+| #define BX_HAVE_MAP 1
+| #define BX_USE_IDLE_HACK 1
+| #define BX_HAVE_DLFCN_H 1
+| #define HAVE_ASSERT_H 1
+| #define BX_PLUGINS 1
+| /* end confdefs.h.  */
+| #include <ltdl.h>
+configure:21661: result: no
 configure:21661: checking for ltdl.h
-configure:21661: result: yes
-configure:21663: checking for lt_dlinit in -lltdl
-configure:21688: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c -lltdl   -ldl >&5
-configure:21688: $? = 0
-configure:21697: result: yes
+configure:21661: result: no
 configure:21797: checking if compiler allows LL for 64-bit constants
 configure:21810: gcc -c -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES conftest.c >&5
 configure:21810: $? = 0
@@ -2977,8 +3239,8 @@ configure:22553: result: yes
 configure:22572: checking whether to use readline
 configure:22577: checking if readline works without -lcurses
 configure:22595: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c  -ldl -lreadline >&5
-conftest.c:131:16: fatal error: readline/readline.h: No such file or directory
-  131 |       #include <readline/readline.h>
+conftest.c:130:16: fatal error: readline/readline.h: No such file or directory
+  130 |       #include <readline/readline.h>
       |                ^~~~~~~~~~~~~~~~~~~~~
 compilation terminated.
 configure:22595: $? = 1
@@ -3094,7 +3356,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -3120,8 +3381,8 @@ configure: failed program was:
 configure:22600: result: no
 configure:22608: checking if readline works with -lcurses
 configure:22625: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c  -ldl -lreadline -lcurses >&5
-conftest.c:131:16: fatal error: readline/readline.h: No such file or directory
-  131 |       #include <readline/readline.h>
+conftest.c:130:16: fatal error: readline/readline.h: No such file or directory
+  130 |       #include <readline/readline.h>
       |                ^~~~~~~~~~~~~~~~~~~~~
 compilation terminated.
 configure:22625: $? = 1
@@ -3237,7 +3498,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -3264,8 +3524,8 @@ configure:22630: result: no
 configure:22655: result: no
 configure:22669: checking readline/history.h usability
 configure:22669: gcc -c -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES conftest.c >&5
-conftest.c:162:10: fatal error: readline/history.h: No such file or directory
-  162 | #include <readline/history.h>
+conftest.c:161:10: fatal error: readline/history.h: No such file or directory
+  161 | #include <readline/history.h>
       |          ^~~~~~~~~~~~~~~~~~~~
 compilation terminated.
 configure:22669: $? = 1
@@ -3380,7 +3640,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -3435,8 +3694,8 @@ configure: failed program was:
 configure:22669: result: no
 configure:22669: checking readline/history.h presence
 configure:22669: gcc -E  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES conftest.c
-conftest.c:129:10: fatal error: readline/history.h: No such file or directory
-  129 | #include <readline/history.h>
+conftest.c:128:10: fatal error: readline/history.h: No such file or directory
+  128 | #include <readline/history.h>
       |          ^~~~~~~~~~~~~~~~~~~~
 compilation terminated.
 configure:22669: $? = 1
@@ -3551,7 +3810,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -3635,8 +3893,8 @@ configure:23835: checking for lowlevel CDROM support
 configure:23852: result: yes
 configure:23863: checking IOKit/storage/IOCDMedia.h usability
 configure:23863: gcc -c -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES conftest.c >&5
-conftest.c:192:10: fatal error: IOKit/storage/IOCDMedia.h: No such file or directory
-  192 | #include <IOKit/storage/IOCDMedia.h>
+conftest.c:191:10: fatal error: IOKit/storage/IOCDMedia.h: No such file or directory
+  191 | #include <IOKit/storage/IOCDMedia.h>
       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
 compilation terminated.
 configure:23863: $? = 1
@@ -3751,7 +4009,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -3836,8 +4093,8 @@ configure: failed program was:
 configure:23863: result: no
 configure:23863: checking IOKit/storage/IOCDMedia.h presence
 configure:23863: gcc -E  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES conftest.c
-conftest.c:159:10: fatal error: IOKit/storage/IOCDMedia.h: No such file or directory
-  159 | #include <IOKit/storage/IOCDMedia.h>
+conftest.c:158:10: fatal error: IOKit/storage/IOCDMedia.h: No such file or directory
+  158 | #include <IOKit/storage/IOCDMedia.h>
       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
 compilation terminated.
 configure:23863: $? = 1
@@ -3952,7 +4209,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -4056,6 +4312,7 @@ configure:24959: result:  X11
 configure:25053: checking for wget
 configure:25069: found /usr/bin/wget
 configure:25080: result: wget
+configure:25242: WARNING: The Bochs debugger gui cannot be compiled here, disabling it
 configure:25783: checking pthread.h usability
 configure:25783: gcc -c -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES conftest.c >&5
 configure:25783: $? = 0
@@ -4067,7 +4324,7 @@ configure:25783: result: yes
 configure:25783: checking for pthread.h
 configure:25783: result: yes
 configure:25896: checking for the pthreads library -lpthreads
-configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES   -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c -lpthreads  -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype >&5
+configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES   -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c -lpthreads  -ldl >&5
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
 configure:25929: $? = 1
@@ -4182,7 +4439,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -4243,7 +4499,7 @@ configure: failed program was:
 | #define BX_DEFAULT_DISPLAY_LIBRARY "x"
 | #define BX_USE_TEXTCONFIG 1
 | #define BX_USE_GUI_CONSOLE 1
-| #define BX_DEBUGGER_GUI 1
+| #define BX_DEBUGGER_GUI 0
 | /* end confdefs.h.  */
 | #include <pthread.h>
 | int
@@ -4257,12 +4513,12 @@ configure: failed program was:
 | }
 configure:25938: result: no
 configure:25885: checking whether pthreads work without any flags
-configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES   -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype >&5
-/usr/bin/ld: /tmp/ccH7fsZh.o: in function `main':
-/home/pi/Documents/Projects/X64/bochs-2.7/conftest.c:178: undefined reference to `pthread_join'
-/usr/bin/ld: /home/pi/Documents/Projects/X64/bochs-2.7/conftest.c:179: undefined reference to `__pthread_register_cancel'
-/usr/bin/ld: /home/pi/Documents/Projects/X64/bochs-2.7/conftest.c:180: undefined reference to `pthread_create'
-/usr/bin/ld: /home/pi/Documents/Projects/X64/bochs-2.7/conftest.c:180: undefined reference to `__pthread_unregister_cancel'
+configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES   -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl >&5
+/usr/bin/ld: /tmp/ccGcVYBb.o: in function `main':
+/home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/conftest.c:177: undefined reference to `pthread_join'
+/usr/bin/ld: /home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/conftest.c:178: undefined reference to `__pthread_register_cancel'
+/usr/bin/ld: /home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/conftest.c:179: undefined reference to `pthread_create'
+/usr/bin/ld: /home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/conftest.c:179: undefined reference to `__pthread_unregister_cancel'
 collect2: error: ld returned 1 exit status
 configure:25929: $? = 1
 configure: failed program was:
@@ -4376,7 +4632,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -4437,7 +4692,7 @@ configure: failed program was:
 | #define BX_DEFAULT_DISPLAY_LIBRARY "x"
 | #define BX_USE_TEXTCONFIG 1
 | #define BX_USE_GUI_CONSOLE 1
-| #define BX_DEBUGGER_GUI 1
+| #define BX_DEBUGGER_GUI 0
 | /* end confdefs.h.  */
 | #include <pthread.h>
 | int
@@ -4451,7 +4706,7 @@ configure: failed program was:
 | }
 configure:25938: result: no
 configure:25890: checking whether pthreads work with -Kthread
-configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -Kthread  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype >&5
+configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -Kthread  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl >&5
 gcc: error: unrecognized command-line option '-Kthread'; did you mean '-pthread'?
 configure:25929: $? = 1
 configure: failed program was:
@@ -4565,7 +4820,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -4626,7 +4880,7 @@ configure: failed program was:
 | #define BX_DEFAULT_DISPLAY_LIBRARY "x"
 | #define BX_USE_TEXTCONFIG 1
 | #define BX_USE_GUI_CONSOLE 1
-| #define BX_DEBUGGER_GUI 1
+| #define BX_DEBUGGER_GUI 0
 | /* end confdefs.h.  */
 | #include <pthread.h>
 | int
@@ -4640,7 +4894,7 @@ configure: failed program was:
 | }
 configure:25938: result: no
 configure:25890: checking whether pthreads work with -kthread
-configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -kthread  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype >&5
+configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -kthread  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl >&5
 gcc: error: unrecognized command-line option '-kthread'; did you mean '-pthread'?
 configure:25929: $? = 1
 configure: failed program was:
@@ -4754,7 +5008,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -4815,7 +5068,7 @@ configure: failed program was:
 | #define BX_DEFAULT_DISPLAY_LIBRARY "x"
 | #define BX_USE_TEXTCONFIG 1
 | #define BX_USE_GUI_CONSOLE 1
-| #define BX_DEBUGGER_GUI 1
+| #define BX_DEBUGGER_GUI 0
 | /* end confdefs.h.  */
 | #include <pthread.h>
 | int
@@ -4829,7 +5082,7 @@ configure: failed program was:
 | }
 configure:25938: result: no
 configure:25896: checking for the pthreads library -llthread
-configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES   -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c -llthread  -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype >&5
+configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES   -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c -llthread  -ldl >&5
 /usr/bin/ld: cannot find -llthread
 collect2: error: ld returned 1 exit status
 configure:25929: $? = 1
@@ -4944,7 +5197,6 @@ configure: failed program was:
 | #define BX_HAVE_DLFCN_H 1
 | #define HAVE_ASSERT_H 1
 | #define BX_PLUGINS 1
-| #define BX_HAVE_LTDL 1
 | #define BX_SUPPORT_A20 1
 | #define BX_SUPPORT_X86_64 1
 | #define BX_SUPPORT_SMP 1
@@ -5005,7 +5257,7 @@ configure: failed program was:
 | #define BX_DEFAULT_DISPLAY_LIBRARY "x"
 | #define BX_USE_TEXTCONFIG 1
 | #define BX_USE_GUI_CONSOLE 1
-| #define BX_DEBUGGER_GUI 1
+| #define BX_DEBUGGER_GUI 0
 | /* end confdefs.h.  */
 | #include <pthread.h>
 | int
@@ -5019,11 +5271,11 @@ configure: failed program was:
 | }
 configure:25938: result: no
 configure:25890: checking whether pthreads work with -pthread
-configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -pthread  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype >&5
+configure:25929: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -pthread  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl >&5
 configure:25929: $? = 0
 configure:25938: result: yes
 configure:25958: checking for joinable pthread attribute
-configure:25971: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -pthread  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype >&5
+configure:25971: gcc -o conftest -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -pthread  -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES  conftest.c   -ldl >&5
 configure:25971: $? = 0
 configure:26003: result: PTHREAD_CREATE_JOINABLE
 configure:26010: checking if more special flags are required for pthreads
@@ -5055,33 +5307,33 @@ generated by GNU Autoconf 2.69.  Invocation command line was
 
 on PI
 
-config.status:1154: creating Makefile
-config.status:1154: creating iodev/Makefile
-config.status:1154: creating iodev/display/Makefile
-config.status:1154: creating iodev/hdimage/Makefile
-config.status:1154: creating iodev/usb/Makefile
-config.status:1154: creating iodev/network/Makefile
-config.status:1154: creating iodev/sound/Makefile
-config.status:1154: creating bx_debug/Makefile
-config.status:1154: creating bios/Makefile
-config.status:1154: creating cpu/Makefile
-config.status:1154: creating cpu/avx/Makefile
-config.status:1154: creating cpu/cpudb/Makefile
-config.status:1154: creating cpu/fpu/Makefile
-config.status:1154: creating memory/Makefile
-config.status:1154: creating gui/Makefile
-config.status:1154: creating instrument/stubs/Makefile
-config.status:1154: creating misc/Makefile
-config.status:1154: creating doc/docbook/Makefile
-config.status:1154: creating build/linux/bochs-dlx
-config.status:1154: creating bxversion.h
-config.status:1154: creating bxversion.rc
-config.status:1154: creating build/macosx/Info.plist
-config.status:1154: creating build/win32/nsis/Makefile
-config.status:1154: creating build/win32/nsis/bochs.nsi
-config.status:1154: creating host/linux/pcidev/Makefile
-config.status:1154: creating config.h
-config.status:1154: creating ltdlconf.h
+config.status:1149: creating Makefile
+config.status:1149: creating iodev/Makefile
+config.status:1149: creating iodev/display/Makefile
+config.status:1149: creating iodev/hdimage/Makefile
+config.status:1149: creating iodev/usb/Makefile
+config.status:1149: creating iodev/network/Makefile
+config.status:1149: creating iodev/sound/Makefile
+config.status:1149: creating bx_debug/Makefile
+config.status:1149: creating bios/Makefile
+config.status:1149: creating cpu/Makefile
+config.status:1149: creating cpu/avx/Makefile
+config.status:1149: creating cpu/cpudb/Makefile
+config.status:1149: creating cpu/fpu/Makefile
+config.status:1149: creating memory/Makefile
+config.status:1149: creating gui/Makefile
+config.status:1149: creating instrument/stubs/Makefile
+config.status:1149: creating misc/Makefile
+config.status:1149: creating doc/docbook/Makefile
+config.status:1149: creating build/linux/bochs-dlx
+config.status:1149: creating bxversion.h
+config.status:1149: creating bxversion.rc
+config.status:1149: creating build/macosx/Info.plist
+config.status:1149: creating build/win32/nsis/Makefile
+config.status:1149: creating build/win32/nsis/bochs.nsi
+config.status:1149: creating host/linux/pcidev/Makefile
+config.status:1149: creating config.h
+config.status:1149: creating ltdlconf.h
 configure:27600: WARNING: unrecognized options: --enable-disasm
 
 ## ---------------- ##
@@ -5177,7 +5429,7 @@ ac_cv_header_dld_h=no
 ac_cv_header_dlfcn_h=yes
 ac_cv_header_errno_h=yes
 ac_cv_header_inttypes_h=yes
-ac_cv_header_ltdl_h=yes
+ac_cv_header_ltdl_h=no
 ac_cv_header_mach_o_dyld_h=no
 ac_cv_header_malloc_h=yes
 ac_cv_header_memory_h=yes
@@ -5197,7 +5449,6 @@ ac_cv_header_unistd_h=yes
 ac_cv_host=aarch64-unknown-linux-gnu
 ac_cv_lib_dl_dlopen=yes
 ac_cv_lib_dld_shl_load=no
-ac_cv_lib_ltdl_lt_dlinit=yes
 ac_cv_member_struct_sockaddr_in_sin_len=no
 ac_cv_objext=o
 ac_cv_path_DOCBOOK2HTML=not_found
@@ -5328,7 +5579,7 @@ ECHO_C=''
 ECHO_N='-n'
 ECHO_T=''
 EGREP='/usr/bin/grep -E'
-ENH_DBG_OBJS='enh_dbg.o gtk_enh_dbg_osdep.o'
+ENH_DBG_OBJS=''
 EXE=''
 EXEEXT=''
 EXPORT_DYNAMIC='-export-dynamic'
@@ -5380,7 +5631,7 @@ KERNEL_MODULE_SUFFIX=''
 LDFLAGS=''
 LIBADD_DL='-ldl'
 LIBOBJS=''
-LIBS=' -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype'
+LIBS=' -ldl'
 LIBTOOL='$(SHELL) $(top_builddir)/libtool'
 LIBVNCSERVER_CONFIG=''
 LINK='$(LIBTOOL) --mode=link --tag CXX $(CXX) -o $@ $(CXXFLAGS) $(LDFLAGS)'
@@ -5412,11 +5663,11 @@ PATH_SEPARATOR=':'
 PCIDEV_MODULE_MAKE_ALL=''
 PCI_OBJS='pci.o pci2isa.o pci_ide.o acpi.o hpet.o'
 PKGCONFIG='/usr/bin/pkg-config'
-PLUGIN_LIB='-lltdl'
+PLUGIN_LIB='ltdl.o'
 PLUGIN_LIBNAME_TRANSFORMATION='%.o=libbx_%.la'
 PLUGIN_TARGET='bochs_plugins'
 PLUGIN_TARGET_2='plugins_gcc'
-PLUGIN_VAR=''
+PLUGIN_VAR='ltdl.o'
 PRIMARY_TARGET='bochs'
 PTHREAD_CC='gcc'
 PTHREAD_CFLAGS='-pthread'
@@ -5442,7 +5693,7 @@ SPECIFIC_GUI_SUPPORT_OBJS=''
 STRIP='strip'
 SUFFIX_LINE='.SUFFIXES: .cc'
 TAR='/usr/bin/tar'
-TOOLKIT_CXXFLAGS='-pthread -I/usr/include/gtk-2.0 -I/usr/lib/aarch64-linux-gnu/gtk-2.0/include -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/harfbuzz -I/usr/include/glib-2.0 -I/usr/lib/aarch64-linux-gnu/glib-2.0/include -I/usr/include/uuid -I/usr/include/freetype2 -I/usr/include/libpng16'
+TOOLKIT_CXXFLAGS=''
 USBHC_DLL_TARGETS='bx_usb_uhci.dll'
 USBHC_OBJS='usb_uhci.o'
 USB_LIB_VAR='iodev/usb/libusb.a'
@@ -5617,7 +5868,6 @@ target_vendor='unknown'
 #define BX_HAVE_DLFCN_H 1
 #define HAVE_ASSERT_H 1
 #define BX_PLUGINS 1
-#define BX_HAVE_LTDL 1
 #define BX_SUPPORT_A20 1
 #define BX_SUPPORT_X86_64 1
 #define BX_SUPPORT_SMP 1
@@ -5678,6 +5928,6 @@ target_vendor='unknown'
 #define BX_DEFAULT_DISPLAY_LIBRARY "x"
 #define BX_USE_TEXTCONFIG 1
 #define BX_USE_GUI_CONSOLE 1
-#define BX_DEBUGGER_GUI 1
+#define BX_DEBUGGER_GUI 0
 
 configure: exit 0

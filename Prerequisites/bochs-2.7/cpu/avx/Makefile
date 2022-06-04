@@ -35,7 +35,7 @@ CXXFLAGS = -g -O2 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -pthread  $(X_CFLAGS)
 #CFLAGS  = -Wall -Wstrict-prototypes -fomit-frame-pointer -fno-strict-aliasing -pipe -fno-strength-reduce -mpreferred-stack-boundary=2 -DCPU=686 -march=i686
 
 LDFLAGS    = 
-LIBS       =  -ldl -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lharfbuzz -lfontconfig -lfreetype
+LIBS       =  -ldl
 RANLIB     = ranlib
 
 BX_INCDIRS = -I.. -I../.. -I$(srcdir)/.. -I$(srcdir)/../.. -I../../instrument/stubs -I$(srcdir)/../../instrument/stubs

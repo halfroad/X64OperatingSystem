@@ -9,7 +9,7 @@
 
 prefix          = /usr/local
 srcdir          = .
-abs_srcdir      = /home/pi/Documents/Projects/X64/bochs-2.7/doc/docbook
+abs_srcdir      = /home/jinhui/Documents/Projects/X64OperatingSystem/Prerequisites/bochs-2.7/doc/docbook
 docdir          = $(prefix)/share/doc/bochs
 WGET = wget
 TARGZ = bochsdoc.tar.gz
