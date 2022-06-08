@@ -1,0 +1,3 @@
+FileLoaded:
+
+					JMP BaseOfLoader: OffsetOfLoader
