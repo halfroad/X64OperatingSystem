@@ -1,0 +1,21 @@
+[SECTION gdt]
+
+GDT:
+
+			DD 0, 0
+
+DESCRIBER_CODE32:
+
+			DD 0x0000ffff, 0x00cf9a00
+
+DECRIBER_DATA32:
+
+			DD 0x0000ffff, 0x00cf9200
+
+GdtLength		EQU $ - GDT
+GdtPtr			EQU GtdLength - 1
+
+			DD GDT
+
+SelectorCode32		EQU DESCRIBER_CODE32 - GDT
+SelectorData32		EQU DESCRIBER_DATA32 - GDT
