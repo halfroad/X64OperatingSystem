@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 bochsout.txt
+*.official
 
 # Object files
 *.o

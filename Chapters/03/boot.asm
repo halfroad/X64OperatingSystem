@@ -369,7 +369,7 @@ LoaderFileName:
 					DB	"LOADER  BIN", 0
 
 
-; ================================= fill zeroo until whole sector
+; ================================= fill zero until whole sector
 
 TIMES			510 - ($ - $$)	DB 0	; TIMES: Repeat. $ current address, $$ address of current sector/segment
 					DW 0xaa55
