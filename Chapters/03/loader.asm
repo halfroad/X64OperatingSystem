@@ -13,7 +13,7 @@ OffsetTemporaryOfKernelFile					EQU 0x7e00
 MemoryStructBufferAddress					EQU 0x7e00
 
 
-[SECTION GlobalDescriberTable]
+[SECTION gdt]
 
 LabelGlobalDescriberTable:					DD 0, 0
 LabelDescriberCode32:						DD 0x0000ffff, 0x00cf9a00
@@ -28,7 +28,7 @@ SelectorCode32								EQU LabelDescriberCode32 - LabelGlobalDescriberTable
 SelectorData32								EQU LabelDescriberData32 - LabelGlobalDescriberTable
 
 
-[SECTION GlobalDescriberTable64]
+[SECTION gdt64]
 
 LabelGlobalDescriberTable64:				DQ 0x0000000000000000
 LabelDescriberCode64:						DQ 0x0020980000000000
@@ -939,7 +939,7 @@ StartLoaderMessage:
 NoLoaderMessage:
 											DB "Error:No KERNEL Found"
 KernelFileName:
-											DB "KERNEL  BIN", 0
+											DB "kernel bin", 0
 StartGetMemoryStructMessage:
 											DB "Start Get Memory Struct."
 GetMemoryStructErrorMessage:

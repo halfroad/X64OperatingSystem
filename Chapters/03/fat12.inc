@@ -3,7 +3,6 @@ SectorNumberOfRootDirectoryStart	EQU 19
 SectorNumberOfFAT1Start				EQU 1
 SectorBalance						EQU 17
 
-; FAT12 Data Structure
 BS_OEMName							DB "MineBoot"
 BPB_BytesPerSec						DW 512
 BPB_SecPerClus						DB 1
@@ -21,5 +20,5 @@ BS_DrvNum							DB 0
 BS_Reserved1						DB 0
 BS_BootSig							DB 29h
 BS_VolID							DD 0
-BS_VolLab							DB "Boot Loader"
-BS_FileSysType						DB "FAT12   "
+BS_VolLab							DB 'Boot Loader'
+BS_FileSysType						DB 'FAT12   '
