@@ -13,6 +13,3 @@ main.o: main.c
 	
 clean:
 	rm -rf *.o *.s~ *.s *S~ *.c~ *.h~ system Makefile~ kernel.bin
-			
-
-

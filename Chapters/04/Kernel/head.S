@@ -2,7 +2,7 @@
 
                                     .SECTION	.TEXT
 
-                                    .GLOBL     _start
+                                    .GLOBL      _start
 
 _start:
 
@@ -128,7 +128,7 @@ __PDE:
 
                                     .SECTION    .data
 
-                                    .GLOBAL     GlobalDescriptorTable
+                                    .GLOBL      GlobalDescriptorTable
 
 GlobalDescriptorTable:
 
@@ -150,7 +150,7 @@ GlobalDescriptorTableBase:
                                     .QUAD       GlobalDescriptorTable
 
 
-                                    .GLOBAL InterruptDescriptorTable
+                                    .GLOBL      InterruptDescriptorTable
                                     
                                     
 // ================================== Interrupt Descriptor Table
