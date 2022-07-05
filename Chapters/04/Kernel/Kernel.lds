@@ -3,7 +3,7 @@ OUTPUT_ARCH(i386:x86-64)
 ENTRY(_start)
 SECTIONS
 {
-    . = 0xffff8000000000 + 0x100000;
+    . = 0xffff800000000000 + 0x100000;
     
     .text :
     {
