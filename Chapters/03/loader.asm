@@ -13,33 +13,33 @@ OffsetTemporaryOfKernelFile					EQU 0x7e00
 MemoryStructBufferAddress					EQU 0x7e00
 
 
-[SECTION gdt]
+[SECTION GlobalDescriptorTableSection]
 
-LabelGlobalDescriberTable:					DD 0, 0
-LabelDescriberCode32:						DD 0x0000ffff, 0x00cf9a00
-LabelDescriberData32:						DD 0x0000ffff, 0x00cf9200
+LabelGlobalDescriptorTable:					DD 0, 0
+LabelDescriptorCode32:						DD 0x0000ffff, 0x00cf9a00
+LabelDescriptorData32:						DD 0x0000ffff, 0x00cf9200
 
-GlobalDescriberTableLength					EQU $ - LabelGlobalDescriberTable
-GlobalDescriberTablePointer					DW GlobalDescriberTableLength - 1
+GlobalDescriptorTableLength					EQU $ - LabelGlobalDescriptorTable
+GlobalDescriptorTablePointer					DW GlobalDescriptorTableLength - 1
 
-											DD LabelGlobalDescriberTable
+											DD LabelGlobalDescriptorTable
 
-SelectorCode32								EQU LabelDescriberCode32 - LabelGlobalDescriberTable
-SelectorData32								EQU LabelDescriberData32 - LabelGlobalDescriberTable
+SelectorCode32								EQU LabelDescriptorCode32 - LabelGlobalDescriptorTable
+SelectorData32								EQU LabelDescriptorData32 - LabelGlobalDescriptorTable
 
 
-[SECTION gdt64]
+[SECTION GlobalDescriptorTableSection64]
 
-LabelGlobalDescriberTable64:				DQ 0x0000000000000000
-LabelDescriberCode64:						DQ 0x0020980000000000
-LabelDescriberData64:						DQ 0x0000920000000000
+LabelGlobalDescriptorTable64:				DQ 0x0000000000000000
+LabelDescriptorCode64:						DQ 0x0020980000000000
+LabelDescriptorData64:						DQ 0x0000920000000000
 
-GlobalDescriberTableLength64				EQU $ - LabelGlobalDescriberTable64
-GlobalDescriberTablePointer64				DW GlobalDescriberTableLength64 - 1
-											DD LabelGlobalDescriberTable64
+GlobalDescriptorTableLength64				EQU $ - LabelGlobalDescriptorTable64
+GlobalDescriptorTablePointer64				DW GlobalDescriptorTableLength64 - 1
+											DD LabelGlobalDescriptorTable64
 
-SelectorCode64								EQU LabelDescriberCode64 - LabelGlobalDescriberTable64
-SelectorData64								EQU LabelDescriberData64 - LabelGlobalDescriberTable64
+SelectorCode64								EQU LabelDescriptorCode64 - LabelGlobalDescriptorTable64
+SelectorData64								EQU LabelDescriptorData64 - LabelGlobalDescriptorTable64
 
 [SECTION .s16]
 [BITS 16]																		; 16 bits bitwidth
@@ -69,7 +69,7 @@ LabelStart:
 
 											POP ax
 
-											MOV sp, StartLoaderMessage			; es: sp, the address of (base: offset) of the string to be displayed
+											MOV bp, StartLoaderMessage			; es: sp, the address of (base: offset) of the string to be displayed
 
 											INT 10h
 
@@ -89,7 +89,7 @@ LabelStart:
 
 											DB 0x66								; Prefix 0x66 for [BITs 16], 0x67 for [BITS 32]
 
-											LGDT [GlobalDescriberTablePointer]
+											LGDT [GlobalDescriptorTablePointer]
 
 											MOV eax, cr0						; eax 32 bits address. cr0, Control Register 0
 											OR eax, 1							; Enable PE. (31, PG: Page), (30, CD), (29, NW), (28...Reserved...19), (18, AW), (17, Reserved), (16, WP), (15...Reserved...6), (5, NE), (4, ET), (3, TS), (2, EM), (1, MP), (0, PE)
@@ -116,15 +116,15 @@ LabelStart:
 
 ; ========================================== Search the file kernel.bin
 
-											MOV WORD [SectorNumber], SectorNumberOfRootDirectoryStart
+											MOV WORD [SectorNumber], StartSectorNumberOfRootDirectory
 
 
-LabelSearchInRootDirectoryBegin:
+BeginSearchKernel:
 
-											CMP WORD [RootDirectorySizeForLoop], 0
-											JZ LabelNoLoaderBin
+											CMP WORD [RootDirectorySize], 0
+											JZ NoKernelFileFoundHandler
 
-											DEC WORD [RootDirectorySizeForLoop]
+											DEC WORD [RootDirectorySize]
 
 											MOV ax, 00h
 											MOV es, ax
@@ -144,53 +144,53 @@ LabelSearchInRootDirectoryBegin:
 											MOV dx, 10h
 
 
-LabelSearchForLoaderBin:
+SearchKernel:
 
 											CMP dx, 0
-											JZ LabelGoToNextSectorInRootDirectory
+											JZ MoveToNextSector
 
 											DEC dx
 											MOV cx, 11
 
-LabelCompareFileName:
+CompareFileName:
 
 											CMP cx, 0
-											JZ LabelFileNameFound
+											JZ FileNameFoundHandler
 
-											DEC dx
+											DEC cx
 
 											LODSB								; Load String: LODSB, load byte (LODSW: load word) from DS: SI to DS: SI. DF == 0, SI & DI increses; DF == 1 decreases.
 
 											CMP al, byte [es: di]
-											JZ LabelGoOn
+											JZ CompareNext
 
-											JMP LabelDifferent
+											JMP DifferentHandler
 
-LabelGoOn:
+CompareNext:
 											INC di
 
-											JMP LabelCompareFileName
+											JMP CompareFileName
 
 
-LabelDifferent:
+DifferentHandler:
 											AND di, 0ffe0h
 
 											ADD di, 20h
 
 											MOV si, KernelFileName
 
-											JMP LabelSearchForLoaderBin
+											JMP SearchKernel
 
 
-LabelGoToNextSectorInRootDirectory:
+MoveToNextSector:
 											ADD WORD [SectorNumber], 1
 
-											JMP LabelSearchInRootDirectoryBegin
+											JMP BeginSearchKernel
 
 
 ; ========================================== Display on screen: Error: NO KERNERL Found
 
-LabelNoLoaderBin:
+NoKernelFileFoundHandler:
 											MOV ax, 1301h
 											MOV bx, 008ch
 											MOV dx, 0300h						; Row 3
@@ -203,15 +203,15 @@ LabelNoLoaderBin:
 
 											POP ax
 
-											MOV bp, NoLoaderMessage
+											MOV bp, NoKernelFileFoundMessage
 
 											INT 10h
 
 											JMP $
 
-; ========================================== Found the file loader.bin in root directory
+; ========================================== Found the file kernel.bin in root directory
 
-LabelFileNameFound:
+FileNameFoundHandler:
 											MOV ax, RootDirectorySectors
 
 											AND di, 0ffe0h
@@ -231,7 +231,7 @@ LabelFileNameFound:
 
 											MOV ax, cx
 
-LabelGoOnLoadingFile:
+GoOnLoadingFile:
 											PUSH ax
 											PUSH bx
 
@@ -270,7 +270,7 @@ LabelGoOnLoadingFile:
 											MOV ds, ax
 											MOV esi, OffsetTemporaryOfKernelFile
 
-LabelReplicateKernel:				; ----------------------------------
+ReplicateKernel:				; ----------------------------------
 
 											MOV al, byte [ds: esi]
 											MOV byte [fs: edi], al
@@ -278,7 +278,7 @@ LabelReplicateKernel:				; ----------------------------------
 											INC esi
 											INC edi
 
-											LOOP LabelReplicateKernel
+											LOOP ReplicateKernel
 
 											MOV eax, 0x1000
 											MOV ds, eax
@@ -296,7 +296,7 @@ LabelReplicateKernel:				; ----------------------------------
 											CALL GetFATEntry
 
 											CMP ax, 0fffh
-											JZ LabelFileLoaded
+											JZ KernelFileLoadedHandler
 
 											PUSH ax
 
@@ -305,9 +305,9 @@ LabelReplicateKernel:				; ----------------------------------
 											ADD ax, dx
 											ADD ax, SectorBalance
 
-											JMP LabelGoOnLoadingFile
+											JMP GoOnLoadingFile
 
-LabelFileLoaded:
+KernelFileLoadedHandler:
 											MOV ax, 0b800h
 											MOV gs, ax
 
@@ -349,24 +349,24 @@ StopMotors:
 											MOV es, ax
 											MOV di, MemoryStructBufferAddress
 
-LabelGetMemoryStruct:
+GetMemoryStruct:
 											MOV eax, 0x0e820
 											MOV ecx, 20
 											MOV edx, 0x534d4150
 
 											INT 15h
 
-											JC LabelGetMemoryStructFailed
+											JC GetMemoryStructFailedHandler
 
 											ADD di, 20
 
 											CMP ebx, 0
-											JNE LabelGetMemoryStruct
+											JNE GetMemoryStruct
 
-											JMP LabelGetMemoryStructSucceeded
+											JMP GetMemoryStructSucceededHandler
 
 
-LabelGetMemoryStructFailed:
+GetMemoryStructFailedHandler:
 											MOV ax, 1301h
 											MOV bx, 008ch
 											MOV dx, 0500h						; Row 5
@@ -386,7 +386,7 @@ LabelGetMemoryStructFailed:
 											JMP $
 
 
-LabelGetMemoryStructSucceeded:
+GetMemoryStructSucceededHandler:
 											MOV ax, 1301h
 											MOV bx, 000fh
 											MOV dx, 0600h						; Row 6
@@ -459,7 +459,7 @@ LabelGetMemoryStructSucceeded:
 											MOV dx, 0a00h						; Row 10
 											MOV cx, 29
 
-											POP ax
+											PUSH ax
 
 											MOV ax, ds
 											MOV es, ax
@@ -497,7 +497,7 @@ LabelGetMemoryStructSucceeded:
 											MOV esi, DWORD [es: si]
 											MOV edi, 0x8200
 
-LabelSVGAModeInformationAcquired:
+SVGAModeInformationAcquiredHandler:
 											MOV cx, WORD [es: esi]
 
 
@@ -508,20 +508,20 @@ LabelSVGAModeInformationAcquired:
 											MOV ax, 00h
 											MOV al, ch
 
-											CALL LabelDisplayAl
+											CALL DisplayAl
 
 											MOV ax, 00h
 											MOV al, cl
 
-											CALL LabelDisplayAl
+											CALL DisplayAl
 
 											POP ax
 
 
 ; ======================================================================
 
-											CMP cx, 0fffh
-											JZ LabelSVGAModeInformationFinished
+											CMP cx, 0ffffh
+											JZ SVGAModeInformationFinishedHandler
 
 											MOV ax, 4f01h
 
@@ -529,15 +529,15 @@ LabelSVGAModeInformationAcquired:
 
 											CMP ax, 004fh
 
-											JNZ LabelSVGAModeInformationFailed
+											JNZ SVGAModeInformationFailedHandler
 
 											ADD esi, 2
 											ADD edi, 0x100
 
-											JMP LabelSVGAModeInformationAcquired
+											JMP SVGAModeInformationAcquiredHandler
 
 
-LabelSVGAModeInformationFailed:
+SVGAModeInformationFailedHandler:
 											MOV ax, 1301h
 											MOV bx, 008ch
 											MOV dx, 0d00h						; Row 13
@@ -555,11 +555,11 @@ LabelSVGAModeInformationFailed:
 											INT 10h
 
 
-LabelSetSVGAModeVESAVBEFailed:
+SetSVGAModeVESAVBEFailedHandler:
 											JMP $
 
 
-LabelSVGAModeInformationFinished:
+SVGAModeInformationFinishedHandler:
 											MOV ax, 1301h
 											MOV bx, 000fh
 											MOV dx, 0e00h						; Row 14
@@ -586,7 +586,7 @@ LabelSVGAModeInformationFinished:
 
 											CMP ax, 004fh
 
-											JNZ LabelSetSVGAModeVESAVBEFailed
+											JNZ SetSVGAModeVESAVBEFailedHandler
 
 
 ; ========================================== Initialize IDt GDT, and enter Protect Mode
@@ -594,7 +594,7 @@ LabelSVGAModeInformationFinished:
 											CLI									; Clear Interrupt
 
 											DB 0x66								; When under NASM [BITS 16], Data Instructive uses 0x66 as prefix, Address Instructive uses 0x67 as prefix
-											LGDT [GlobalDescriberTablePointer]
+											LGDT [GlobalDescriptorTablePointer]
 
 										;	DB 0x66
 										;	LIDT [InterruptDescripberTablePointer]
@@ -650,11 +650,11 @@ EnterTemporaryProtectMode:
 											MOV DWORD [0x92028], 0xa00083
 
 
-; ========================================== Load Global Describer Table Register
+; ========================================== Load Global Descriptor Table Register
 
 											DB 0x66
 
-											LGDT [GlobalDescriberTablePointer64]
+											LGDT [GlobalDescriptorTablePointer64]
 
 											MOV ax, 0x10
 
@@ -714,7 +714,7 @@ CheckSupportLongMode:
 
 											SETNB al
 
-											JB SupportLongModeDone
+											JB SupportLongModeDoneHandler
 
 											MOV eax, 0x80000001
 
@@ -725,7 +725,7 @@ CheckSupportLongMode:
 											SETC al
 
 
-SupportLongModeDone:
+SupportLongModeDoneHandler:
 											MOVZX eax, al
 
 											RET
@@ -774,13 +774,13 @@ ReadOneSector:
 											MOV dl, [BS_DrvNum]
 
 
-LabelGoOnReading:
+GoOnReading:
 											MOV ah, 2
 											MOV al, BYTE [bp - 2]
 
 											INT 13h
 
-											JC LabelGoOnReading
+											JC GoOnReading
 
 											ADD esp, 2
 
@@ -826,7 +826,7 @@ LabelEven:
 
 											MOV bx, 8000h
 
-											ADD ax, SectorNumberOfFAT1Start
+											ADD ax, StartSectorNumberOfFAT1
 
 											MOV cl, 2
 
@@ -856,7 +856,7 @@ LabelEven2:
 
 ; ========================================== Display number in al
 
-LabelDisplayAl:
+DisplayAl:
 											PUSH ecx
 											PUSH edx
 											PUSH edi
@@ -907,23 +907,23 @@ LabelDisplayAl:
 											RET
 
 
-; ========================================== Temporary Interrupt Describer Table (IDT)
+; ========================================== Temporary Interrupt Descriptor Table (IDT)
 
-InterruptDescriberTable:
+InterruptDescriptorTable:
 
 											TIMES 0x50 DQ 0
 
-InterruptDescriberTableEnd:
+InterruptDescriptorTableEnd:
 
 
-InterruptDescriberTablePointer:
-											DW InterruptDescriberTableEnd - InterruptDescriberTable - 1
-											DD InterruptDescriberTable
+InterruptDescriptorTablePointer:
+											DW InterruptDescriptorTableEnd - InterruptDescriptorTable - 1
+											DD InterruptDescriptorTable
 
 
 ; ========================================== Temporary Variables
 
-RootDirectorySizeForLoop					DW RootDirectorySectors
+RootDirectorySize					        DW RootDirectorySectors
 SectorNumber								DW 0
 Odd											DB 0
 OffsetOfKernelFileCount						DD OffsetOfKernelFile
@@ -936,10 +936,10 @@ DisplayPosition								DD 0
 
 StartLoaderMessage:
 											DB "Start Loader"
-NoLoaderMessage:
+NoKernelFileFoundMessage:
 											DB "Error:No KERNEL Found"
 KernelFileName:
-											DB "kernel bin", 0
+											DB "KERNEL  BIN", 0
 StartGetMemoryStructMessage:
 											DB "Start Get Memory Struct."
 GetMemoryStructErrorMessage:

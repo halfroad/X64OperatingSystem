@@ -1,9 +1,9 @@
 RootDirectorySectors				EQU 14
-SectorNumberOfRootDirectoryStart	EQU 19
-SectorNumberOfFAT1Start				EQU 1
+StartSectorNumberOfRootDirectory	EQU 19
+StartSectorNumberOfFAT1				EQU 1
 SectorBalance						EQU 17
 
-BS_OEMName							DB "MineBoot"
+BS_OEMName							DB 'MineBoot'
 BPB_BytesPerSec						DW 512
 BPB_SecPerClus						DB 1
 BPB_RsvdSecCnt						DW 1

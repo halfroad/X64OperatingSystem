@@ -112,7 +112,7 @@ BeginSearchRootDirectory:
 
 									MOV dx, 10h
 
-SearchLoaderBin:
+SearchLoader:
 
 									CMP dx, 0
 
@@ -129,7 +129,7 @@ Compare:
 
 									DEC cx
 
-									LODSB	; Load byte from the address of (e)si. The si will be increased when DF = 0; decreased when DF = 1
+									LODSB	; Load byte from the address of (es)si. The si will be increased when DF = 0; decreased when DF = 1
 
 									CMP al, BYTE [es: di]
 
@@ -147,7 +147,7 @@ Different:
 									ADD di, 20h
 									MOV si, LoaderFileName
 
-									JMP SearchLoaderBin
+									JMP SearchLoader
 
 MoveToNextSector:
 
