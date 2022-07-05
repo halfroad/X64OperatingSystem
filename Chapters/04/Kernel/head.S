@@ -2,7 +2,7 @@
 
                                     .SECTION	.TEXT
 
-                                    .GLOBAL     _start
+                                    .GLOBL     _start
 
 _start:
 
