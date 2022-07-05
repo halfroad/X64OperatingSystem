@@ -1,6 +1,6 @@
 // ================================= Main Entry
 
-                                    .SECTION	.TEXT
+                                    .SECTION	.text
 
                                     .GLOBL      _start
 
