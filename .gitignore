@@ -2,6 +2,7 @@
 *.d
 bochsout.txt
 *.official
+*.s
 
 # Object files
 *.o
