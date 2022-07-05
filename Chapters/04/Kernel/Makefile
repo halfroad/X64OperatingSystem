@@ -12,7 +12,7 @@ main.o: main.c
 	gcc -mcmodel=large -fno-builtin -m64 -c main.c
 	
 clean:
-	rm -rf *.o *.s~ *s *S~ *.c~ *.h~ system Makefile~ Kernel.lds~ kernel.bin
+	rm -rf *.o *.s~ *s *S~ *.c~ *.h~ system Makefile~ *.lds~ kernel.bin
 			
 
 
