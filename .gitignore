@@ -2,9 +2,10 @@
 *.d
 bochsout.txt
 *.official
-*.s
 *.bin
 *.img
+
+Experiments/
 
 # Object files
 *.o
