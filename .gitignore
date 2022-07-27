@@ -3,6 +3,8 @@
 bochsout.txt
 *.official
 *.s
+*.bin
+*.img
 
 # Object files
 *.o
