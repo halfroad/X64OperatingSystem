@@ -1,9 +1,9 @@
 #include <stdarg.h>
-#include "DisplayCharacter.h"
+#include "DisplayOnScreen.h"
 #include "lib.h"
 #include "linkage.h"
 
-int PrintColor(unsigned int foregroundColor, unsigned int backgroundColor, const char * fmt,...)
+int display(unsigned int foregroundColor, unsigned int backgroundColor, const char * fmt,...)
 {
 	int i, count, line = 0
 
