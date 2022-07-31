@@ -10,6 +10,9 @@ head.o: head.S
 
 main.o: main.c lib.h
     gcc -static -mcmodel=large -fno-builtin -m64 -c main.c -fno-stack-protector
+
+DisplayOnScreen.o: DisplayOnScreen.c lib.h
+    gcc -static -mcmodel=large -fno-builtin -m64 -c DisplayOnScreen.c -fno-stack-protector
     
 clean:
     rm -rf *.o *.s~ *.s *S~ *.c~ *.h~ system Makefile~ kernel.bin
