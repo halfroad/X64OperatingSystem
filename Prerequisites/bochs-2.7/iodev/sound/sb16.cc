@@ -2993,7 +2993,7 @@ bool bx_sb16_buffer::puts(const char *data, ...)
 
   va_list ap;
   va_start(ap, data);
-  vsprintf(string, data, ap);
+  VSPrintf(string, data, ap);
   va_end(ap);
 
   if ((int) strlen(string) >= length)

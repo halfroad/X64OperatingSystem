@@ -46,7 +46,7 @@ int bx_snprintf (char *s, size_t maxlen, const char *format, ...)
   int done;
 
   va_start (arg, format);
-  done = vsprintf (s, format, arg);
+  done = VSPrintf (s, format, arg);
   va_end (arg);
 
   return done;
@@ -57,7 +57,7 @@ int bx_snprintf (char *s, size_t maxlen, const char *format, ...)
 #if !BX_HAVE_VSNPRINTF
 int bx_vsnprintf (char *s, size_t maxlen, const char *format, va_list arg)
 {
-  return vsprintf (s, format, arg);
+  return VSPrintf (s, format, arg);
 }
 #endif /* !BX_HAVE_VSNPRINTF*/
 

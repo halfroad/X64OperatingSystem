@@ -1,7 +1,7 @@
 struct
 {
-	int HorizontalDirectionResolution;
-	int VerticalDirectionResolution;
+	int HorizontalResolution;
+	int VerticalResolution;
 
 	int HorizontalPosition;
 	int VerticalPosition;

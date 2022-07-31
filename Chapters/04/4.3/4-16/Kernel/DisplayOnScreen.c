@@ -10,7 +10,7 @@ int display(unsigned int foregroundColor, unsigned int backgroundColor, const ch
 	va_list args;
 	va_start(args, fmt);
 
-	i = vsprintf(buf, fmt, args);
+	i = VSPrintf(buf, fmt, args);
 
 	va_end(args);
 
