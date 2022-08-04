@@ -1,13 +1,12 @@
-#define Divide(n, base) ({  \
-
-    int _res;   \
+#define isDigit(c)  ((c) >= '0' && (c) <= '9')
+#define Divide(n,base) ({  \
+    int __res;   \
     __asm__("divq %%rcx": "=a" (n), "=d" (__res): "0" (n), "1" (0), "c" (base)); \
-    __res;
-})
+    __res; })
 
 static char * numberize(char *string, long number, int base, int size, int precision, int type)
 {
-    char character, sign, temperory[50];
+    char character, sign, temporary[50];
     const char *digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
     int i;
@@ -21,7 +20,7 @@ static char * numberize(char *string, long number, int base, int size, int preci
     if (base < 2 || base > 36)
         return 0;
     
-    c = (type & ZEROPAD) ? '0' : ' ';
+    character = (type & ZEROPAD) ? '0' : ' ';
     sign = 0;
     
     if (type & SIGN && number < 0)
@@ -69,13 +68,13 @@ static char * numberize(char *string, long number, int base, int size, int preci
         else if (base == 16)
         {
             *string ++ = '0';
-            *string += = digits[33];
+            *string ++ = digits[33];
         }
     }
     
     if (!(type & LEFT))
         while(size -- > 0)
-            *string ++ = c;
+            *string ++ = character;
     
     while (i < precision --)
         *string ++ = '0';

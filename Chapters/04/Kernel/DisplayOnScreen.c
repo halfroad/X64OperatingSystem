@@ -4,21 +4,23 @@
 #include "linkage.h"
 
 #define isDigit(c)  ((c) >= '0' && (c) <= '9')
-#define Divide(n, base) ({  \
-
-    int _res;   \
+#define Divide(n,base) ({  \
+    int __res;   \
     __asm__("divq %%rcx": "=a" (n), "=d" (__res): "0" (n), "1" (0), "c" (base)); \
-    __res;
-})
+    __res; })
+
+extern inline int strlen(char * String);
 
 int PrintColor(unsigned int foregroundColor, unsigned int backgroundColor, const char * fmt,...)
 {
-	int i, count, line = 0
+    int i, count, line = 0;
 
 	va_list args;
 	va_start(args, fmt);
-
-	i = VSPrintf(buf, fmt, args);
+    
+    char buffer[4096] = {0};
+    
+	i = VSPrint(buffer, fmt, args);
 
 	va_end(args);
 
@@ -42,14 +44,14 @@ int PrintColor(unsigned int foregroundColor, unsigned int backgroundColor, const
 			
 			if (Position.HorizontalPosition < 0)
 			{
-				Position.HorizontalPosition = (Position.HorizontalResolution / Position.HorizontalCharSize - 1) * Position.HorizontalCharacterSize;
+				Position.HorizontalPosition = (Position.HorizontalResolution / Position.HorizontalCharacterSize - 1) * Position.HorizontalCharacterSize;
 				Position.VerticalPosition --;
 				
 				if (Position.VerticalPosition < 0)
-					Position.VerticalPosition = (Position.VerticalPosition / Position.VerticalCharSize -1) * Position.VerticalCharSize;
+					Position.VerticalPosition = (Position.VerticalPosition / Position.VerticalCharacterSize -1) * Position.VerticalCharacterSize;
 			}
 			
-			putchar(Position.FBAddress, Position.HorizontalResolution, Position.HorizontalPosition * Position.VerticalCharSize, Position.VerticalPosition * Position.VerticalCharSize, foregroundColor, backgroundColor, ' ');
+			PutChar(Position.FrameBufferAddress, Position.HorizontalResolution, Position.HorizontalPosition * Position.VerticalCharacterSize, Position.VerticalPosition * Position.VerticalCharacterSize, foregroundColor, backgroundColor, ' ');
 		}
 		else if ((unsigned char) *(buffer + count) == '\t')
 		{
@@ -58,14 +60,14 @@ int PrintColor(unsigned int foregroundColor, unsigned int backgroundColor, const
 LabelTab:
 			line --;
 			
-			putchar(Position.FrameBufferAddress, Position.HorizontalResolution, Position.HorizontalPosition * Position.HorizontalCharSize, Position.VerticalPosition * Position.VerticalCharSize, foregroundColor, backgroundColor, ' ');
+			PutChar(Position.FrameBufferAddress, Position.HorizontalResolution, Position.HorizontalPosition * Position.HorizontalCharacterSize, Position.VerticalPosition * Position.VerticalCharacterSize, foregroundColor, backgroundColor, ' ');
 			
 			
 			Position.HorizontalPosition ++;
 		}
 		else
 		{
-			putchar(Position.FrameBufferAddress, Position.HorizontalResolution, Position.HorizontalPosition * Position.HorizontalCharSize, Position.VerticalPosition * Position.VerticalCharSize, foregroundColor, backgroundColor, (unsigned char) *(buffer + count));
+			PutChar(Position.FrameBufferAddress, Position.HorizontalResolution, Position.HorizontalPosition * Position.HorizontalCharacterSize, Position.VerticalPosition * Position.VerticalCharacterSize, foregroundColor, backgroundColor, (unsigned char) *(buffer + count));
 			
 			Position.HorizontalPosition ++;
 		}
@@ -133,25 +135,25 @@ int VSPrint(char * buffer, const char * format, va_list args)
         
         format ++;
         
-        switch (format)
+        switch (*format)
         {
-            case case '-':
+            case '-':
                 flags |= LEFT;
                 goto LabelRepeat;
                 
-            case case '+':
+            case '+':
                 flags |= PLUS;
                 goto LabelRepeat;
                 
-            case case ' ':
+            case ' ':
                 flags |= SPACE;
                 goto LabelRepeat;
                 
-            case case '#':
+            case '#':
                 flags |= SPECIAL;
                 goto LabelRepeat;
                 
-            case case '0':
+            case '0':
                 flags |= ZEROPAD;
                 goto LabelRepeat;
                 
@@ -168,7 +170,7 @@ int VSPrint(char * buffer, const char * format, va_list args)
         {
             format ++;
             
-            fieldWdith = va_arg(args, int);
+            fieldWidth = va_arg(args, int);
             
             if (fieldWidth < 0)
             {
@@ -253,9 +255,9 @@ int VSPrint(char * buffer, const char * format, va_list args)
             case 'o':
                 
                 if (qualifier == 'l')
-                    string = number(string, va_arg(args, unsigned long), 8, fieldWidth, precision, flags);
+                    string = numberize(string, va_arg(args, unsigned long), 8, fieldWidth, precision, flags);
                 else
-                    string = number(string, va_arg(args, unsigned int), 8, fieldWidth, precision, flags);
+                    string = numberize(string, va_arg(args, unsigned int), 8, fieldWidth, precision, flags);
                 
                 break;
                 
@@ -267,7 +269,7 @@ int VSPrint(char * buffer, const char * format, va_list args)
                     flags |= ZEROPAD;
                 }
                 
-                string = number(string, va_arg(args, unsigned long)va_arg(args, void *), 16, fieldWidth, precision, flags);
+                string = numberize(string, (unsigned long)va_arg(args, void *), 16, fieldWidth, precision, flags);
                 
                 break;
                 
@@ -278,9 +280,9 @@ int VSPrint(char * buffer, const char * format, va_list args)
             case 'X':
                 
                 if (qualifier == 'l')
-                    string = number(string, va_arg(args, unsigned long), 16, fieldWidth, precision, flags);
+                    string = numberize(string, va_arg(args, unsigned long), 16, fieldWidth, precision, flags);
                 else
-                    string = number(string, va_arg(args, unsigned int), 8, fieldWidth, precision, flags);
+                    string = numberize(string, va_arg(args, unsigned int), 8, fieldWidth, precision, flags);
                 
                 break;
                 
@@ -292,9 +294,9 @@ int VSPrint(char * buffer, const char * format, va_list args)
             case 'u':
                 
                 if (qualifier == 'l')
-                    string = number(string, va_arg(args, unsigned long), 10, fieldWidth, precision, flags);
+                    string = numberize(string, va_arg(args, unsigned long), 10, fieldWidth, precision, flags);
                 else
-                    string = number(string, va_arg(args, unsigned int), 10, fieldWidth, precision, flags);
+                    string = numberize(string, va_arg(args, unsigned int), 10, fieldWidth, precision, flags);
                 
             case 'n':
                 
@@ -335,7 +337,7 @@ int SkipToInteger (const char **string)
 {
     int i = 0;
     
-    while (isDigit (**String))
+    while (isDigit (**string))
         i = i * 10 + *((*string) ++) - '0';
     
     return i;
@@ -343,7 +345,7 @@ int SkipToInteger (const char **string)
 
 static char * numberize(char *string, long number, int base, int size, int precision, int type)
 {
-    char character, sign, temperory[50];
+    char character, sign, temporary[50];
     const char *digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
     int i;
@@ -357,7 +359,7 @@ static char * numberize(char *string, long number, int base, int size, int preci
     if (base < 2 || base > 36)
         return 0;
     
-    c = (type & ZEROPAD) ? '0' : ' ';
+    character = (type & ZEROPAD) ? '0' : ' ';
     sign = 0;
     
     if (type & SIGN && number < 0)
@@ -405,13 +407,13 @@ static char * numberize(char *string, long number, int base, int size, int preci
         else if (base == 16)
         {
             *string ++ = '0';
-            *string += = digits[33];
+            *string ++ = digits[33];
         }
     }
     
     if (!(type & LEFT))
         while(size -- > 0)
-            *string ++ = c;
+            *string ++ = character;
     
     while (i < precision --)
         *string ++ = '0';
