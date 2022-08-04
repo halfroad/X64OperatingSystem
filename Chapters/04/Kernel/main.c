@@ -14,7 +14,7 @@ void StartKernel(void)
     Position.VerticalPosition = 0;
     
     Position.HorizontalCharacterSize = 8;
-    Position.VerticalCharacterSize = 8;
+    Position.VerticalCharacterSize = 16;
     
     Position.FrameBufferAddress = (int *) 0xffff800000a00000;
     Position.FrameBufferLength = Position.HorizontalResolution * Position.VerticalResolution * 4;
