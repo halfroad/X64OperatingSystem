@@ -231,7 +231,7 @@ int VSPrint(char * buffer, const char * format, va_list args)
                 if (!s)
                     s = '\0';
                 
-                length = strlen(s);
+                length = (int)strlen(s);
                 
                 if (precision < 0)
                     precision = length;
@@ -331,6 +331,10 @@ int VSPrint(char * buffer, const char * format, va_list args)
                 break;
         }
     }
+    
+    *string = '\0';
+    
+    return string - buffer;
 }
 
 int SkipToInteger (const char **string)
@@ -383,7 +387,7 @@ static char * numberize(char *string, long number, int base, int size, int preci
     
     i = 0;
     
-    if (number = 0)
+    if (number == 0)
         temporary[i ++] = '0';
     else
         temporary[i ++] = digits[Divide(number, base)];
