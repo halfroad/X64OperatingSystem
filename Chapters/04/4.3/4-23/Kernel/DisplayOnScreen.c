@@ -44,5 +44,42 @@ int VSPrint(char * buffer, const char * format, va_list args)
             default:
                 break;
         }
+        
+        /* Field width */
+        fieldWidth = -1;
+        
+        if (isDigit(*format))
+            fieldWidth = SkipToInteger(&format);
+        else if (*format == '*')
+        {
+            format ++;
+            
+            fieldWidth = va_arg(args, int);
+            
+            if (fieldWidth < 0)
+            {
+                fieldWidth = - fieldWidth;
+                flags |= LEFT;
+            }
+        }
+        
+        /* Precision */
+        precision = -1;
+        
+        if (*format == '.')
+        {
+            format ++;
+            
+            if (isDigit(*format))
+                precision = SkipToInteger(&format);
+            else if (*format == '*')
+            {
+                format ++;
+                precision = va_arg(args, int);
+            }
+            
+            if (precision < 0)
+                precision = 0;
+        }
     }
 }

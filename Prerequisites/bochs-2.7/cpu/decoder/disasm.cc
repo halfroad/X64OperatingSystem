@@ -55,7 +55,7 @@ char* dis_sprintf(char *disbufptr, const char *fmt, ...)
   va_list ap;
 
   va_start(ap, fmt);
-  vsprintf(disbufptr, fmt, ap);
+  VSPrintf(disbufptr, fmt, ap);
   va_end(ap);
 
   disbufptr += strlen(disbufptr);

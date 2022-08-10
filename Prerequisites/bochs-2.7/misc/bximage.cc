@@ -116,7 +116,7 @@ int snprintf(char *s, size_t maxlen, const char *format, ...)
   int done;
 
   va_start(arg, format);
-  done = vsprintf(s, format, arg);
+  done = VSPrintf(s, format, arg);
   va_end(arg);
 
   return done;

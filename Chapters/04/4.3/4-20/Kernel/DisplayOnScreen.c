@@ -1,4 +1,4 @@
-void putchar(unsigned int *frameBufferAddress, int honrizontalCharacterSize, int honrizontal, int vertical, unsigned int foregroundColor, unsigned int backgroundColor, unsigned char font)
+void PutChar(unsigned int *frameBufferAddress, int honrizontalCharacterSize, int honrizontal, int vertical, unsigned int foregroundColor, unsigned int backgroundColor, unsigned char font)
 {
     unsigned int * address = NULL;
     unsigned char * fontPointer = FontAscii[font];

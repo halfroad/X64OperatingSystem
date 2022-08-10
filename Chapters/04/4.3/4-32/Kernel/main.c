@@ -5,6 +5,8 @@ void StartKernel(void)
 {
     int *address = (int *) 0xffff800000a00000;
     
+    int i;
+    
     Position.HorizontalResolution = 1440;
     Position.VerticalResolution = 900;
     
