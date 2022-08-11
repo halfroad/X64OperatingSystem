@@ -5,7 +5,7 @@ bochsout.txt
 *.bin
 *.img
 
-Experiments/
+# Experiments/
 
 # Object files
 *.o
