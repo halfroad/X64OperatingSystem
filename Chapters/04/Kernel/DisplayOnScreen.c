@@ -11,6 +11,7 @@
 
 extern inline int strlen(char * String);
 
+// const parameter here mean the parameter is READONLY
 int PrintColor(unsigned int foregroundColor, unsigned int backgroundColor, const char * fmt,...)
 {
     int i, count, line = 0;

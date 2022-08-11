@@ -59,6 +59,8 @@ void StartKernel(void)
     }
     
     PrintColor(YELLOW, BLACK, "Hello\t\t World!\n");
+    
+    int j = 1 / 0;
 
     while(1);
 }
