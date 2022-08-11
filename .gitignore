@@ -2,8 +2,8 @@
 *.d
 bochsout.txt
 *.official
-*.bin
-*.img
+# *.bin
+# *.img
 
 # Experiments/
 
